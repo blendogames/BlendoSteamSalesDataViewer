@@ -8,7 +8,7 @@ Details about the Steam sales API here:
 - https://steamcommunity.com/groups/steamworks/announcements/detail/532096678169150062
 - https://partner.steamgames.com/doc/webapi/IPartnerFinancialsService
 
-This tool shows net units and net sales. As described in the API documents above, there is a lot of sales information available. It should be relatively simple for you to make custom modifications to this tool for your specific needs.
+This tool shows net units and net sales. As described in the API documents above, there is a lot of sales information available, such as discount info, region info, bundle info, returns, etc. It should be relatively simple for you to make custom modifications to this tool for your specific needs.
 
 This is written in C# and a .sln solution for Visual Studio 2015 is provided. Windows only.
 
