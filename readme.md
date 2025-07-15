@@ -12,7 +12,7 @@ This tool shows net units and net sales. As described in the API documents above
 
 This is written in C# and a .sln solution for Visual Studio 2015 is provided. Windows only.
 
-Pre-compiled binaries [available here](https://github.com/blendogames/blendosteamsalesdata/releases/tag/release).
+Pre-compiled binaries [available here](https://github.com/blendogames/BlendoSteamSalesDataViewer/releases/tag/release).
 
 ## Note
 The web API key is stored in:
