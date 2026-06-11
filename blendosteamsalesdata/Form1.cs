@@ -593,6 +593,53 @@ namespace blendosteamsalesdata
 
             return commandUrl;
         }
+
+        private void copyAllToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Copy entire log.
+            listBox1.BackColor = Color.White;
+
+            string output = string.Empty;
+
+            foreach (object item in listBox1.Items)
+                output += item.ToString() + "\r\n";
+
+            if (string.IsNullOrWhiteSpace(output))
+            {
+                AddLog(string.Empty);
+                AddLog("No log found.");
+                return;
+            }
+
+            Clipboard.SetText(output);
+        }
+
+        private void copySelectedLinesToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Copy selected to log.
+            listBox1.BackColor = Color.White;
+
+            string output = string.Empty;
+
+            foreach (object item in listBox1.SelectedItems)
+            {
+                output += item.ToString() + "\r\n";
+            }
+
+            if (string.IsNullOrWhiteSpace(output))
+            {
+                return;
+            }
+
+            Clipboard.SetText(output);
+        }
+
+        private void clearLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Clear log.
+            listBox1.Items.Clear();
+            listBox1.BackColor = Color.White;
+        }
     }
 
 

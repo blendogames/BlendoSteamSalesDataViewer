@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox_apikey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,23 +41,31 @@
             this.textBox_enddate = new System.Windows.Forms.TextBox();
             this.button_go = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button_todaydate = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_todaydate = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.contextMenu_log = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copySelectedLinesToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyAllToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenu_log.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.ContextMenuStrip = this.contextMenu_log;
             this.listBox1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 14;
             this.listBox1.Location = new System.Drawing.Point(15, 575);
             this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox1.Size = new System.Drawing.Size(807, 74);
             this.listBox1.TabIndex = 0;
             this.listBox1.TabStop = false;
@@ -168,26 +178,6 @@
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.TabStop = false;
             // 
-            // button_todaydate
-            // 
-            this.button_todaydate.Location = new System.Drawing.Point(444, 26);
-            this.button_todaydate.Name = "button_todaydate";
-            this.button_todaydate.Size = new System.Drawing.Size(44, 23);
-            this.button_todaydate.TabIndex = 14;
-            this.button_todaydate.Text = "today";
-            this.button_todaydate.UseVisualStyleBackColor = true;
-            this.button_todaydate.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(15, 553);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(807, 16);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 15;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Date";
@@ -212,6 +202,65 @@
             this.Column3.ReadOnly = true;
             this.Column3.Width = 350;
             // 
+            // button_todaydate
+            // 
+            this.button_todaydate.Location = new System.Drawing.Point(444, 26);
+            this.button_todaydate.Name = "button_todaydate";
+            this.button_todaydate.Size = new System.Drawing.Size(44, 23);
+            this.button_todaydate.TabIndex = 14;
+            this.button_todaydate.Text = "today";
+            this.button_todaydate.UseVisualStyleBackColor = true;
+            this.button_todaydate.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(15, 553);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(807, 16);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 15;
+            // 
+            // contextMenu_log
+            // 
+            this.contextMenu_log.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copySelectedLinesToClipboardToolStripMenuItem,
+            this.copyAllToClipboardToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.clearLogToolStripMenuItem});
+            this.contextMenu_log.Name = "contextMenu_log";
+            this.contextMenu_log.Size = new System.Drawing.Size(243, 76);
+            // 
+            // copySelectedLinesToClipboardToolStripMenuItem
+            // 
+            this.copySelectedLinesToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copySelectedLinesToClipboardToolStripMenuItem.Image")));
+            this.copySelectedLinesToClipboardToolStripMenuItem.Name = "copySelectedLinesToClipboardToolStripMenuItem";
+            this.copySelectedLinesToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copySelectedLinesToClipboardToolStripMenuItem.Text = "Copy selected lines to clipboard";
+            this.copySelectedLinesToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedLinesToClipboardToolStripMenuItem_Click);
+            // 
+            // copyAllToClipboardToolStripMenuItem
+            // 
+            this.copyAllToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyAllToClipboardToolStripMenuItem.Image")));
+            this.copyAllToClipboardToolStripMenuItem.Name = "copyAllToClipboardToolStripMenuItem";
+            this.copyAllToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copyAllToClipboardToolStripMenuItem.Text = "Copy all to clipboard";
+            this.copyAllToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyAllToClipboardToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(239, 6);
+            // 
+            // clearLogToolStripMenuItem
+            // 
+            this.clearLogToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearLogToolStripMenuItem.Image")));
+            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.clearLogToolStripMenuItem.Text = "Clear log";
+            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,6 +283,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Blendo Steam Sales Data Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenu_log.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +307,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ContextMenuStrip contextMenu_log;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedLinesToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyAllToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
     }
 }
 
