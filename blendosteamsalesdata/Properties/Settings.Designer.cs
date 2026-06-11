@@ -70,5 +70,17 @@ namespace blendosteamsalesdata.Properties {
                 this["dateend"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string all_app_ids {
+            get {
+                return ((string)(this["all_app_ids"]));
+            }
+            set {
+                this["all_app_ids"] = value;
+            }
+        }
     }
 }

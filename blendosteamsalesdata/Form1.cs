@@ -42,21 +42,137 @@ namespace blendosteamsalesdata
             this.dataGridView1.DefaultCellStyle.Font = new Font("Consolas", 10);
 
             textBox_apikey.Text = Properties.Settings.Default.web_api_key;
-            textBox_appid.Text = Properties.Settings.Default.appid.ToString();
             textBox_startdate.Text = Properties.Settings.Default.datestart;
             textBox_enddate.Text = Properties.Settings.Default.dateend;
 
 
 
+            string allAppIDsRaw = Properties.Settings.Default.all_app_ids.ToString();
+            string[] appIDs = allAppIDsRaw.Split(',');
+            for (int i = 0; i < appIDs.Length; i++)
+            {
+                textBox_appid.Items.Add(appIDs[i]);
+            }
+
+
+            string lastUsedAppID = Properties.Settings.Default.appid.ToString();
+            if (SelectFromCombobox(lastUsedAppID))
+            {
+                //Yay, selected the item from combobox
+            }
+            else if (lastUsedAppID == "0")
+            {
+                if (textBox_appid.Items.Count > 0)
+                {
+                    textBox_appid.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                //if for some reason the combobox doesn't have the last used app id (???), then just manually add it in.
+
+                if (!string.IsNullOrWhiteSpace(lastUsedAppID))
+                {
+                    textBox_appid.Items.Add(lastUsedAppID);
+                    SortCombobox();
+
+                    SelectFromCombobox(lastUsedAppID);
+                }
+            }
+
+
+
             textBox_apikey.KeyDown += TextBox_KeyDown;
-            textBox_appid.KeyDown += TextBox_KeyDown;
+            textBox_appid.KeyDown += TextBox_appid_KeyDown;
             textBox_startdate.KeyDown += TextBox_KeyDown;
             textBox_enddate.KeyDown += TextBox_KeyDown;
+
 
 
             allSalesDates = null;
 
             AddLog_NonInvoked("Press ctrl+c to copy any selected text.");
+        }
+
+        private bool SelectFromCombobox(string text)
+        {            
+            for (int i = 0; i < textBox_appid.Items.Count; i++)
+            {
+                if (string.Compare(textBox_appid.Items[i].ToString(), text, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    textBox_appid.SelectedIndex = i;
+                    return true;
+                }
+            }
+            
+
+            return false;
+        }
+
+        private void TextBox_appid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                SaveCombobox(true);
+            }
+        }
+
+        private void SaveCombobox(bool selectNextItem)
+        {
+            //Add new item to the app ID combobox.
+
+            int result = 0;
+            if (!int.TryParse(textBox_appid.Text, out result))
+            {
+                //only allow integers.
+                return;
+            }
+
+
+            if (textBox_appid.Items.Contains(result))
+            {
+                //don't save duplicates.
+                return;
+            }
+
+            textBox_appid.Items.Add(result);
+
+            SortCombobox();
+
+            if (selectNextItem)
+            {
+                textBox_startdate.Focus(); //select next item to confirm that Enter has been pressed.
+            }
+        }
+
+        private void SortCombobox()
+        {
+            if (textBox_appid.Items.Count <= 0)
+                return;
+            
+            List<int> myNumbers = new List<int>();
+
+            for (int i = 0; i < textBox_appid.Items.Count; i++)
+            {
+                int result = 0;
+                if (int.TryParse(textBox_appid.Items[i].ToString(), out result))
+                {
+                    myNumbers.Add(result);
+                }
+            }
+
+            //Sort the list.
+            myNumbers.Sort();
+
+            // Clear old items and add the sorted ones
+            textBox_appid.Items.Clear();
+            foreach (var num in myNumbers)
+            {
+                textBox_appid.Items.Add(num);
+            }
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
@@ -72,6 +188,8 @@ namespace blendosteamsalesdata
 
         private async void ClickGoButton()
         {
+            SaveCombobox(false);
+
             progressBar1.Value = 0;
 
             
@@ -444,6 +562,26 @@ namespace blendosteamsalesdata
             {
                 Properties.Settings.Default.appid = appID;
             }
+            else
+            {
+                Properties.Settings.Default.appid = 0;
+            }
+
+
+            //Save the entire list of app ids.
+            string appid_str_list = string.Empty;
+            for (int i = 0; i < textBox_appid.Items.Count; i++)
+            {
+                appid_str_list += textBox_appid.Items[i].ToString();
+
+                if (i < textBox_appid.Items.Count - 1)
+                {
+                    appid_str_list += ",";
+                }
+            }
+            Properties.Settings.Default.all_app_ids = appid_str_list;
+
+
 
             DateTime date;
             if (GetParsedDate(textBox_startdate.Text, out date))
@@ -477,6 +615,8 @@ namespace blendosteamsalesdata
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
+
             ClickGoButton();
         }
 
@@ -695,6 +835,36 @@ namespace blendosteamsalesdata
             }
 
             Clipboard.SetDataObject(dataObj, true);
+        }
+
+        private void button_deleteAppID_Click(object sender, EventArgs e)
+        {
+
+            //Clicking the 'delete' app id.
+
+            string thingToDelete = textBox_appid.Text;
+
+            if (string.IsNullOrWhiteSpace(thingToDelete))
+                return;
+
+            for (int i = 0; i < textBox_appid.Items.Count; i++)
+            {
+                if (string.Compare(textBox_appid.Items[i].ToString(), thingToDelete, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    textBox_appid.Items.RemoveAt(i);
+
+                    textBox_appid.Select();
+
+                    textBox_appid.Text = string.Empty;
+
+
+
+                    return;
+                }
+            }
+
+            
+            
         }
     }
 

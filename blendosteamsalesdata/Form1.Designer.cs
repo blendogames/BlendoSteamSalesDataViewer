@@ -38,7 +38,6 @@
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_apikey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox_appid = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,6 +55,9 @@
             this.copySelectedToClipboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.button_todaydate = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.textBox_appid = new System.Windows.Forms.ComboBox();
+            this.button_deleteAppID = new System.Windows.Forms.Button();
+            this.toolTip_deleteAppID = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenu_log.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenu_datagrid.SuspendLayout();
@@ -135,14 +137,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Web API Key:";
             // 
-            // textBox_appid
-            // 
-            this.textBox_appid.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_appid.Location = new System.Drawing.Point(15, 26);
-            this.textBox_appid.Name = "textBox_appid";
-            this.textBox_appid.Size = new System.Drawing.Size(80, 22);
-            this.textBox_appid.TabIndex = 3;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -155,7 +149,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(133, 10);
+            this.label3.Location = new System.Drawing.Point(199, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 13);
             this.label3.TabIndex = 7;
@@ -164,7 +158,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(289, 10);
+            this.label4.Location = new System.Drawing.Point(338, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(130, 13);
             this.label4.TabIndex = 9;
@@ -173,17 +167,17 @@
             // textBox_startdate
             // 
             this.textBox_startdate.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_startdate.Location = new System.Drawing.Point(136, 26);
+            this.textBox_startdate.Location = new System.Drawing.Point(202, 26);
             this.textBox_startdate.Name = "textBox_startdate";
-            this.textBox_startdate.Size = new System.Drawing.Size(150, 22);
+            this.textBox_startdate.Size = new System.Drawing.Size(125, 22);
             this.textBox_startdate.TabIndex = 10;
             // 
             // textBox_enddate
             // 
             this.textBox_enddate.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_enddate.Location = new System.Drawing.Point(292, 26);
+            this.textBox_enddate.Location = new System.Drawing.Point(341, 26);
             this.textBox_enddate.Name = "textBox_enddate";
-            this.textBox_enddate.Size = new System.Drawing.Size(150, 22);
+            this.textBox_enddate.Size = new System.Drawing.Size(125, 22);
             this.textBox_enddate.TabIndex = 11;
             // 
             // button_go
@@ -271,7 +265,7 @@
             this.selectAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("selectAllToolStripMenuItem.Image")));
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
             this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.selectAllToolStripMenuItem.Text = "Select full column of selected cells";
+            this.selectAllToolStripMenuItem.Text = "Select all columns of selected cells";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // copySelectedToClipboardToolStripMenuItem
@@ -289,10 +283,11 @@
             // 
             // button_todaydate
             // 
-            this.button_todaydate.Location = new System.Drawing.Point(444, 26);
+            this.button_todaydate.Location = new System.Drawing.Point(468, 26);
             this.button_todaydate.Name = "button_todaydate";
-            this.button_todaydate.Size = new System.Drawing.Size(44, 23);
+            this.button_todaydate.Size = new System.Drawing.Size(43, 23);
             this.button_todaydate.TabIndex = 14;
+            this.button_todaydate.TabStop = false;
             this.button_todaydate.Text = "today";
             this.button_todaydate.UseVisualStyleBackColor = true;
             this.button_todaydate.Click += new System.EventHandler(this.button1_Click);
@@ -307,11 +302,34 @@
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 15;
             // 
+            // textBox_appid
+            // 
+            this.textBox_appid.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_appid.FormattingEnabled = true;
+            this.textBox_appid.Location = new System.Drawing.Point(41, 26);
+            this.textBox_appid.Name = "textBox_appid";
+            this.textBox_appid.Size = new System.Drawing.Size(94, 22);
+            this.textBox_appid.TabIndex = 19;
+            // 
+            // button_deleteAppID
+            // 
+            this.button_deleteAppID.Image = ((System.Drawing.Image)(resources.GetObject("button_deleteAppID.Image")));
+            this.button_deleteAppID.Location = new System.Drawing.Point(15, 25);
+            this.button_deleteAppID.Name = "button_deleteAppID";
+            this.button_deleteAppID.Size = new System.Drawing.Size(24, 24);
+            this.button_deleteAppID.TabIndex = 20;
+            this.button_deleteAppID.TabStop = false;
+            this.toolTip_deleteAppID.SetToolTip(this.button_deleteAppID, "Remove App ID from list");
+            this.button_deleteAppID.UseVisualStyleBackColor = true;
+            this.button_deleteAppID.Click += new System.EventHandler(this.button_deleteAppID_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 661);
+            this.Controls.Add(this.button_deleteAppID);
+            this.Controls.Add(this.textBox_appid);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button_todaydate);
             this.Controls.Add(this.dataGridView1);
@@ -321,7 +339,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox_appid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_apikey);
             this.Controls.Add(this.listBox1);
@@ -341,7 +358,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox textBox_apikey;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox_appid;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -364,6 +380,9 @@
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator copySelectedToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copySelectedToClipboardToolStripMenuItem1;
+        private System.Windows.Forms.ComboBox textBox_appid;
+        private System.Windows.Forms.Button button_deleteAppID;
+        private System.Windows.Forms.ToolTip toolTip_deleteAppID;
     }
 }
 
