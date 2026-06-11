@@ -46,10 +46,28 @@ namespace blendosteamsalesdata
             textBox_startdate.Text = Properties.Settings.Default.datestart;
             textBox_enddate.Text = Properties.Settings.Default.dateend;
 
-            
+
+
+            textBox_apikey.KeyDown += TextBox_KeyDown;
+            textBox_appid.KeyDown += TextBox_KeyDown;
+            textBox_startdate.KeyDown += TextBox_KeyDown;
+            textBox_enddate.KeyDown += TextBox_KeyDown;
+
+
             allSalesDates = null;
 
             AddLog_NonInvoked("Press ctrl+c to copy any selected text.");
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                ClickGoButton();
+            }
         }
 
         private async void ClickGoButton()
@@ -64,7 +82,7 @@ namespace blendosteamsalesdata
             textBox_enddate.Enabled = false;
             textBox_apikey.Enabled = false;
             button_todaydate.Enabled = false;
-            button_copyclipboard.Enabled = false;
+            
 
             dataGridView1.Rows.Clear();
             dataGridView1.ClearSelection();
@@ -117,7 +135,6 @@ namespace blendosteamsalesdata
             textBox_enddate.Enabled = true;
             textBox_apikey.Enabled = true;
             button_todaydate.Enabled = true;
-            button_copyclipboard.Enabled = true;
         }
 
 

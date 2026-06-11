@@ -39,12 +39,11 @@
             this.textBox_enddate = new System.Windows.Forms.TextBox();
             this.button_go = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button_todaydate = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button_todaydate = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button_copyclipboard = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,9 +138,9 @@
             this.button_go.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button_go.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_go.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button_go.Location = new System.Drawing.Point(141, 514);
+            this.button_go.Location = new System.Drawing.Point(15, 514);
             this.button_go.Name = "button_go";
-            this.button_go.Size = new System.Drawing.Size(681, 33);
+            this.button_go.Size = new System.Drawing.Size(807, 33);
             this.button_go.TabIndex = 18;
             this.button_go.Text = "GO";
             this.button_go.UseVisualStyleBackColor = false;
@@ -169,30 +168,6 @@
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.TabStop = false;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Date";
-            this.Column1.MinimumWidth = 120;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 120;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Net units";
-            this.Column2.MinimumWidth = 120;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Net Sales USD";
-            this.Column3.MinimumWidth = 300;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 300;
-            // 
             // button_todaydate
             // 
             this.button_todaydate.Location = new System.Drawing.Point(444, 26);
@@ -213,23 +188,35 @@
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 15;
             // 
-            // button_copyclipboard
+            // Column1
             // 
-            this.button_copyclipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_copyclipboard.Location = new System.Drawing.Point(15, 514);
-            this.button_copyclipboard.Name = "button_copyclipboard";
-            this.button_copyclipboard.Size = new System.Drawing.Size(120, 33);
-            this.button_copyclipboard.TabIndex = 17;
-            this.button_copyclipboard.Text = "Copy all to clipboard";
-            this.button_copyclipboard.UseVisualStyleBackColor = true;
-            this.button_copyclipboard.Click += new System.EventHandler(this.button1_Click_1);
+            this.Column1.HeaderText = "Date";
+            this.Column1.MinimumWidth = 120;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 120;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Net units";
+            this.Column2.MinimumWidth = 150;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Net Sales USD";
+            this.Column3.MinimumWidth = 350;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 350;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 661);
-            this.Controls.Add(this.button_copyclipboard);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button_todaydate);
             this.Controls.Add(this.dataGridView1);
@@ -265,12 +252,11 @@
         private System.Windows.Forms.TextBox textBox_enddate;
         private System.Windows.Forms.Button button_go;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button_todaydate;
+        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Button button_todaydate;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button_copyclipboard;
     }
 }
 
