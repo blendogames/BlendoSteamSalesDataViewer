@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.contextMenu_log = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copySelectedLinesToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyAllToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_apikey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_appid = new System.Windows.Forms.TextBox();
@@ -44,15 +49,16 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenu_datagrid = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllInSelectedColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectedToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.copySelectedToClipboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.button_todaydate = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.contextMenu_log = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copySelectedLinesToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyAllToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenu_log.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenu_datagrid.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
@@ -69,6 +75,45 @@
             this.listBox1.Size = new System.Drawing.Size(807, 74);
             this.listBox1.TabIndex = 0;
             this.listBox1.TabStop = false;
+            // 
+            // contextMenu_log
+            // 
+            this.contextMenu_log.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copySelectedLinesToClipboardToolStripMenuItem,
+            this.copyAllToClipboardToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.clearLogToolStripMenuItem});
+            this.contextMenu_log.Name = "contextMenu_log";
+            this.contextMenu_log.Size = new System.Drawing.Size(243, 76);
+            // 
+            // copySelectedLinesToClipboardToolStripMenuItem
+            // 
+            this.copySelectedLinesToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copySelectedLinesToClipboardToolStripMenuItem.Image")));
+            this.copySelectedLinesToClipboardToolStripMenuItem.Name = "copySelectedLinesToClipboardToolStripMenuItem";
+            this.copySelectedLinesToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copySelectedLinesToClipboardToolStripMenuItem.Text = "Copy selected lines to clipboard";
+            this.copySelectedLinesToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedLinesToClipboardToolStripMenuItem_Click);
+            // 
+            // copyAllToClipboardToolStripMenuItem
+            // 
+            this.copyAllToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyAllToClipboardToolStripMenuItem.Image")));
+            this.copyAllToClipboardToolStripMenuItem.Name = "copyAllToClipboardToolStripMenuItem";
+            this.copyAllToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.copyAllToClipboardToolStripMenuItem.Text = "Copy all to clipboard";
+            this.copyAllToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyAllToClipboardToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(239, 6);
+            // 
+            // clearLogToolStripMenuItem
+            // 
+            this.clearLogToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearLogToolStripMenuItem.Image")));
+            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.clearLogToolStripMenuItem.Text = "Clear log";
+            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
             // 
             // textBox_apikey
             // 
@@ -170,6 +215,7 @@
             this.Column1,
             this.Column2,
             this.Column3});
+            this.dataGridView1.ContextMenuStrip = this.contextMenu_datagrid;
             this.dataGridView1.Location = new System.Drawing.Point(15, 55);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -202,6 +248,45 @@
             this.Column3.ReadOnly = true;
             this.Column3.Width = 350;
             // 
+            // contextMenu_datagrid
+            // 
+            this.contextMenu_datagrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllInSelectedColumnsToolStripMenuItem,
+            this.selectAllToolStripMenuItem,
+            this.copySelectedToClipboardToolStripMenuItem,
+            this.copySelectedToClipboardToolStripMenuItem1});
+            this.contextMenu_datagrid.Name = "contextMenu_datagrid";
+            this.contextMenu_datagrid.Size = new System.Drawing.Size(256, 76);
+            // 
+            // selectAllInSelectedColumnsToolStripMenuItem
+            // 
+            this.selectAllInSelectedColumnsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("selectAllInSelectedColumnsToolStripMenuItem.Image")));
+            this.selectAllInSelectedColumnsToolStripMenuItem.Name = "selectAllInSelectedColumnsToolStripMenuItem";
+            this.selectAllInSelectedColumnsToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.selectAllInSelectedColumnsToolStripMenuItem.Text = "Select all";
+            this.selectAllInSelectedColumnsToolStripMenuItem.Click += new System.EventHandler(this.selectAllInSelectedColumnsToolStripMenuItem_Click);
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("selectAllToolStripMenuItem.Image")));
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.selectAllToolStripMenuItem.Text = "Select full column of selected cells";
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
+            // 
+            // copySelectedToClipboardToolStripMenuItem
+            // 
+            this.copySelectedToClipboardToolStripMenuItem.Name = "copySelectedToClipboardToolStripMenuItem";
+            this.copySelectedToClipboardToolStripMenuItem.Size = new System.Drawing.Size(252, 6);
+            // 
+            // copySelectedToClipboardToolStripMenuItem1
+            // 
+            this.copySelectedToClipboardToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("copySelectedToClipboardToolStripMenuItem1.Image")));
+            this.copySelectedToClipboardToolStripMenuItem1.Name = "copySelectedToClipboardToolStripMenuItem1";
+            this.copySelectedToClipboardToolStripMenuItem1.Size = new System.Drawing.Size(255, 22);
+            this.copySelectedToClipboardToolStripMenuItem1.Text = "Copy selected to clipboard";
+            this.copySelectedToClipboardToolStripMenuItem1.Click += new System.EventHandler(this.copySelectedToClipboardToolStripMenuItem1_Click);
+            // 
             // button_todaydate
             // 
             this.button_todaydate.Location = new System.Drawing.Point(444, 26);
@@ -221,45 +306,6 @@
             this.progressBar1.Size = new System.Drawing.Size(807, 16);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 15;
-            // 
-            // contextMenu_log
-            // 
-            this.contextMenu_log.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copySelectedLinesToClipboardToolStripMenuItem,
-            this.copyAllToClipboardToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.clearLogToolStripMenuItem});
-            this.contextMenu_log.Name = "contextMenu_log";
-            this.contextMenu_log.Size = new System.Drawing.Size(243, 76);
-            // 
-            // copySelectedLinesToClipboardToolStripMenuItem
-            // 
-            this.copySelectedLinesToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copySelectedLinesToClipboardToolStripMenuItem.Image")));
-            this.copySelectedLinesToClipboardToolStripMenuItem.Name = "copySelectedLinesToClipboardToolStripMenuItem";
-            this.copySelectedLinesToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.copySelectedLinesToClipboardToolStripMenuItem.Text = "Copy selected lines to clipboard";
-            this.copySelectedLinesToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedLinesToClipboardToolStripMenuItem_Click);
-            // 
-            // copyAllToClipboardToolStripMenuItem
-            // 
-            this.copyAllToClipboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyAllToClipboardToolStripMenuItem.Image")));
-            this.copyAllToClipboardToolStripMenuItem.Name = "copyAllToClipboardToolStripMenuItem";
-            this.copyAllToClipboardToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.copyAllToClipboardToolStripMenuItem.Text = "Copy all to clipboard";
-            this.copyAllToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyAllToClipboardToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(239, 6);
-            // 
-            // clearLogToolStripMenuItem
-            // 
-            this.clearLogToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearLogToolStripMenuItem.Image")));
-            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
-            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.clearLogToolStripMenuItem.Text = "Clear log";
-            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -282,8 +328,9 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Blendo Steam Sales Data Viewer";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenu_log.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenu_datagrid.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,6 +359,11 @@
         private System.Windows.Forms.ToolStripMenuItem copyAllToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenu_datagrid;
+        private System.Windows.Forms.ToolStripMenuItem selectAllInSelectedColumnsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator copySelectedToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedToClipboardToolStripMenuItem1;
     }
 }
 

@@ -504,38 +504,37 @@ namespace blendosteamsalesdata
         //detect ctrl+C for listbox
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == (Keys.Control | Keys.C))
-            {
-                if (listBox1.Focused)
+            if (keyData == (Keys.Control | Keys.C) && listBox1.Focused)
+            {                
+                if (listBox1.SelectedItem != null)
                 {
-                    if (listBox1.SelectedItem != null)
-                    {
-                        string strToCopy = listBox1.SelectedItem.ToString();
-                        CopyToClipboard(strToCopy, false);
-                    }
-
-                    return true;
+                    string strToCopy = listBox1.SelectedItem.ToString();
+                    CopyToClipboard(strToCopy);
                 }
 
+                return true;                
             }
+
+
+            if (keyData == (Keys.Control | Keys.A) && dataGridView1.Focused)
+            {
+                //select all datagrid.
+                dataGridView1.SelectAll();
+            }
+
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        void CopyToClipboard(string strToCopy, bool showLog = true)
+        void CopyToClipboard(string strToCopy)
         {
             try
             {
                 Clipboard.SetText(strToCopy);
-
-                if (showLog)
-                {
-                    AddLog("[COPIED TO CLIPBOARD]: {0}", strToCopy);
-                }
             }
             catch
             {
                 AddLog("*** ERROR ***: failed to copy to clipboard.");
-                //SetListboxColor(Color.Pink);
             }
         }
 
@@ -639,6 +638,63 @@ namespace blendosteamsalesdata
             //Clear log.
             listBox1.Items.Clear();
             listBox1.BackColor = Color.White;
+        }
+
+        private void selectAllInSelectedColumnsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //select all datagrid.
+            dataGridView1.SelectAll();
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //select full column of selected cells
+
+            //See which cells are selected.
+
+            if (dataGridView1.SelectedCells.Count <= 0)
+                return;
+
+            List<int> selectedColumns = new List<int>();
+            for (int i = 0; i < dataGridView1.SelectedCells.Count; i++)
+            {
+                int columnIndex = dataGridView1.SelectedCells[i].ColumnIndex;
+
+                if (selectedColumns.Contains(columnIndex))
+                    continue;
+
+                selectedColumns.Add(columnIndex);                
+            }
+
+            
+
+            for (int i = 0; i < selectedColumns.Count; i++)
+            {
+                int columnIndex = selectedColumns[i];
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.IsNewRow)
+                        continue;
+
+                    row.Cells[columnIndex].Selected = true;
+                }                
+            }
+
+            
+        }
+
+        private void copySelectedToClipboardToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //copy to clipboard
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+
+            if (dataObj == null)
+            {
+                return;
+            }
+
+            Clipboard.SetDataObject(dataObj, true);
         }
     }
 
