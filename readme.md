@@ -1,4 +1,5 @@
 # Blendo Steam Sales Data Viewer
+[![Generic badge](https://img.shields.io/badge/Download-itch.io-red.svg)](https://blendogames.itch.io/blendo-steam-sales-data-viewer) [![Donate](https://img.shields.io/badge/donate-$$$-brightgreen.svg)](https://blendogames.itch.io/blendo-steam-sales-data-viewer/purchase)
 
 ## About
 This is a tool for viewing your Steam sales data.
