@@ -49,6 +49,8 @@ namespace blendosteamsalesdata
 
             string allAppIDsRaw = Properties.Settings.Default.all_app_ids.ToString();
             string[] appIDs = allAppIDsRaw.Split(',');
+            appIDs = RemoveDuplicates(appIDs);
+
             for (int i = 0; i < appIDs.Length; i++)
             {
                 textBox_appid.Items.Add(appIDs[i]);
@@ -94,6 +96,21 @@ namespace blendosteamsalesdata
             AddLog_NonInvoked("Press ctrl+c to copy any selected text.");
         }
 
+        private string[] RemoveDuplicates(string[] array)
+        {
+            List<string> uniques = new List<string>();
+
+            foreach (string str in array)
+            {
+                if (!uniques.Contains(str))
+                {
+                    uniques.Add(str);
+                }
+            }
+
+            return uniques.ToArray();
+        }
+
         private bool SelectFromCombobox(string text)
         {            
             for (int i = 0; i < textBox_appid.Items.Count; i++)
@@ -131,8 +148,7 @@ namespace blendosteamsalesdata
                 return;
             }
 
-
-            if (textBox_appid.Items.Contains(result))
+            if (DoesComboboxContain(result))
             {
                 //don't save duplicates.
                 return;
@@ -144,8 +160,24 @@ namespace blendosteamsalesdata
 
             if (selectNextItem)
             {
-                textBox_startdate.Focus(); //select next item to confirm that Enter has been pressed.
+                //select next item to confirm that Enter has been pressed. This is for when the user enters a number and presses enter.
+                textBox_startdate.Focus(); 
             }
+        }
+
+        private bool DoesComboboxContain(int number)
+        {
+            for (int i = 0; i < textBox_appid.Items.Count; i++)
+            {
+                string textboxItem = textBox_appid.Items[i].ToString();
+                string numberStr = number.ToString();
+                if (string.Compare(textboxItem, numberStr, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void SortCombobox()
@@ -200,7 +232,9 @@ namespace blendosteamsalesdata
             textBox_enddate.Enabled = false;
             textBox_apikey.Enabled = false;
             button_todaydate.Enabled = false;
-            
+            button_deleteAppID.Enabled = false;
+
+
 
             dataGridView1.Rows.Clear();
             dataGridView1.ClearSelection();
@@ -253,6 +287,7 @@ namespace blendosteamsalesdata
             textBox_enddate.Enabled = true;
             textBox_apikey.Enabled = true;
             button_todaydate.Enabled = true;
+            button_deleteAppID.Enabled = true;
         }
 
 
@@ -417,6 +452,9 @@ namespace blendosteamsalesdata
                 if (allSalesDates[i] < startdate || allSalesDates[i] > enddate)
                     continue;
 
+                if (datelist.Contains(allSalesDates[i])) //Don't include duplicate dates.
+                    continue;
+
                 datelist.Add(allSalesDates[i]);
             }
 
@@ -435,6 +473,9 @@ namespace blendosteamsalesdata
             IList<SteamWebRequestParameter> parameters = new List<SteamWebRequestParameter>();
             parameters.Insert(0, new SteamWebRequestParameter("key", steamWebApiKey));
             parameters.Insert(0, new SteamWebRequestParameter("highwatermark", "0"));
+
+            //6-30-2026
+            parameters.Insert(0, new SteamWebRequestParameter("include_view_grants", "1")); //Include sales data that is visible via view grants in the response.
 
             using (var client = new HttpClient())
             {
@@ -481,6 +522,9 @@ namespace blendosteamsalesdata
             parameters.Insert(0, new SteamWebRequestParameter("key", steamWebApiKey));
             parameters.Insert(0, new SteamWebRequestParameter("date", datestring));
             parameters.Insert(0, new SteamWebRequestParameter("highwatermark_id", "0"));
+
+            //6-30-2026
+            parameters.Insert(0, new SteamWebRequestParameter("include_view_grants", "1")); //Include sales data that is visible via view grants in the response.
 
             using (var client = new HttpClient())
             {
